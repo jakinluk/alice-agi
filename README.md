@@ -1,8 +1,8 @@
-# Alice AGI
+# My AGI
 
-<img src="https://cloud.overment.com/2024-12-02/alice_agi-dc8ca6a3-1.png" style="border-radius: 10px; border: 1px solid #888" width="150">
+It is an app forked from excelent work done by Overment under https://github.com/iceener/ai
 
-Alice AGI is an application that uses LLM (GPT-4o) to perform actions based on user queries, while using available tools and long-term memory.
+My AGI is an application that uses LLM (GPT-4o) to perform actions based on user queries, while using available tools and long-term memory.
 
 > **⚠️ Important Notice**
 >
@@ -19,7 +19,7 @@ Alice AGI is an application that uses LLM (GPT-4o) to perform actions based on u
 
 ### Database, migrations & seeds
 
-Alice AGI uses `SQLite` as a database with `DrizzleORM`. To create the database and run migrations, you can use the following commands:
+My AGI uses `SQLite` as a database with `DrizzleORM`. To create the database and run migrations, you can use the following commands:
 
 ```bash
 bun generate
@@ -137,7 +137,7 @@ Additional tools can be added by creating a new tool in the `src/services/tools`
 
 ## Concept
 
-The idea of Alice AGI aims for simplicity - creating a system that executes tasks based on natural language commands. While not omnipotent, it leverages existing apps, services, and devices the user regularly interacts with. The system performs actions by combining available capabilities with its long-term memory of user preferences and patterns.
+The idea of My AGI aims for simplicity - creating a system that executes tasks based on natural language commands. While not omnipotent, it leverages existing apps, services, and devices the user regularly interacts with. The system performs actions by combining available capabilities with its long-term memory of user preferences and patterns.
 
 Currently, it supports these tools and actions:
 
@@ -166,7 +166,7 @@ The main logic has two modes: fast-track and thinking. If the query is classifie
 
 ## Interaction
 
-Alice AGI is available at `http://localhost:8080`. The main endpoint is `/api/agi/chat`, which is compatible with OpenAI's chat completions API. Personally I use:
+My AGI is available at `http://localhost:8080`. The main endpoint is `/api/agi/chat`, which is compatible with OpenAI's chat completions API. Personally I use:
 
 - [Alice App](https://heyalice.app/) for macOS / Windows
 - Siri Shortcuts for iOS (iPhone and Apple Watch)

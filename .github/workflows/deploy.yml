@@ -1,4 +1,4 @@
-name: Deploy Alice AGI
+name: Deploy My AGI
 
 on:
   push:
@@ -99,7 +99,7 @@ jobs:
       if: github.event_name == 'push' && github.ref == 'refs/heads/main' # Only run on push to main branch
       run: |
         # Ensure PM2 is installed globally on the runner (e.g., sudo bun install -g pm2 or sudo npm install -g pm2)
-        APP_NAME="alice-agi" # Define your PM2 application name
+        APP_NAME="my-agi" # Define your PM2 application name
         
         echo "Checking if $APP_NAME is running with PM2..."
         if pm2 list | grep -qw $APP_NAME; then

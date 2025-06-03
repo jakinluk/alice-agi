@@ -1,5 +1,5 @@
 {
-  "name": "alice-agi",
+  "name": "my-agi",
   "type": "module",
   "scripts": {
     "dev": "bun run --watch src/index.ts",
