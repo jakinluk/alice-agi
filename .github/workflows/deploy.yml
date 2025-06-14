@@ -54,13 +54,11 @@ jobs:
         echo "GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }}" >> .env # For Calendar OAuth primarily
         echo "GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }}" >> .env # For Calendar OAuth
         echo "GOOGLE_REDIRECT_URI=${{ secrets.GOOGLE_REDIRECT_URI }}" >> .env # For Calendar OAuth
-        echo "GOOGLE_API_KEY=${{ secrets.GOOGLE_API_KEY }}" >> .env # General Google API Key from .env-example
+        echo "GOOGLE_MAPS_API_KEY=${{ secrets.GOOGLE_MAPS_API_KEY }}" >> .env # General Google API Key from .env-example
         echo "GOOGLE_MAPS_API_KEY=${{ secrets.GOOGLE_MAPS_API_KEY }}" >> .env # Specific for Maps, from README
         echo "GOOGLE_ACCESS_TOKEN=${{ secrets.GOOGLE_ACCESS_TOKEN }}" >> .env # OAuth related, may not be static
         echo "GOOGLE_REFRESH_TOKEN=${{ secrets.GOOGLE_REFRESH_TOKEN }}" >> .env # OAuth related, may not be static
         echo "GOOGLE_TOKEN_EXPIRY=${{ secrets.GOOGLE_TOKEN_EXPIRY }}" >> .env # OAuth related, may not be static
-        echo "CALENDAR_CLIENT_ID=${{ secrets.CALENDAR_CLIENT_ID }}" >> .env # Potentially distinct Google OAuth for Calendar
-        echo "CALENDAR_CLIENT_SECRET=${{ secrets.CALENDAR_CLIENT_SECRET }}" >> .env # Potentially distinct
         # Firecrawl
         echo "FIRECRAWL_API_KEY=${{ secrets.FIRECRAWL_API_KEY }}" >> .env
         # ElevenLabs
