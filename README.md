@@ -86,6 +86,52 @@ LINEAR_TEAM_ID=
 LINEAR_DEFAULT_ASSIGNEE_ID=
 ```
 
+##### Projects Configuration (seed.json)
+
+The application uses a `seed.json` file to configure Linear projects dynamically. This file should be placed in the root directory of the project and contains the project definitions used by the Linear tool.
+
+**seed.json schema:**
+```json
+{
+  "projects": [
+    {
+      "uuid": "project-uuid-here",
+      "name": "project-name",
+      "description": "project description explaining when to use this project"
+    }
+  ]
+}
+```
+
+**Example seed.json:**
+```json
+{
+  "projects": [
+    {
+      "uuid": "ad799a5f-259c-4ff1-9387-efb949a56508",
+      "name": "jakinluk",
+      "description": "this should be DEFAULT project for most tasks."
+    },
+    {
+      "uuid": "fb516e26-9111-48fa-bc2f-9f7b2c1e5e26",
+      "name": "events",
+      "description": "this is only for events / meetings"
+    },
+    {
+      "uuid": "ef35d07e-f422-4316-9e00-b6806e1e7563",
+      "name": "resources",
+      "description": "this is only for resources / learning materials / links to the resources"
+    }
+  ]
+}
+```
+
+To set up your projects:
+1. Create a `seed.json` file in the project root
+2. Get your Linear project UUIDs from `/api/tools/linear/projects` endpoint
+3. Add your projects with their UUIDs, names, and descriptions
+4. The seed script will automatically use this data to configure the Linear tool instructions
+
 #### Calendar
 ```env
 # Google Calendar - Create OAuth2 app (console.cloud.google.com/apis/credentials)
@@ -168,15 +214,17 @@ The main logic has two modes: fast-track and thinking. If the query is classifie
 
 My AGI is available at `http://localhost:8080`. The main endpoint is `/api/agi/chat`, which is compatible with OpenAI's chat completions API. Personally I use:
 
-- [Alice App](https://heyalice.app/) for macOS / Windows
-- Siri Shortcuts for iOS (iPhone and Apple Watch)
 
-<img src="https://cloud.overment.com/2024-12-03/custom-74a4c1ab-d.png" width="600" style="border-radius: 6px; margin: 20px 0">
+## Google Services Architecture in the App:
 
-<img src="https://cloud.overment.com/2024-12-03/example-f3a8a69d-9.png" width="600" style="border-radius: 6px; margin: 20px 0">
+The application uses two different authentication methods for Google services:
 
-<img src="https://cloud.overment.com/2024-12-03/shortcuts-82690e02-8.png" width="600" style="border-radius: 6px; margin: 20px 0">
+1. OAuth2 (for user data): Used for Calendar, Gmail, Drive, Sheets. Uses GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET. Requires user consent and stores access/refresh tokens. Accesses user's personal data.
+2. API Key (for public data): Used for Maps. Uses GOOGLE_MAPS_API_KEY. No user authentication required. Accesses public Google Maps data.
 
 ## License
 
-This repo is mainly for my personal use, but feel free to explore the code, get inspired by the concepts, and adapt them for your projects. Just don't copy the entire project with its original name—I want to avoid any confusion.
+This repo is mainly for my personal use, but feel free to explore the code, get inspired by the concepts, and adapt them for your projects. 
+
+
+It is an app forked from excelent work done by Overment under https://github.com/iceener/ai

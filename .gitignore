@@ -32,3 +32,4 @@ agi.db
 .idea
 
 drizzle*.md
+seed.json

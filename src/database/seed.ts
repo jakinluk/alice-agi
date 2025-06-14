@@ -3,33 +3,35 @@ import {Database} from 'bun:sqlite';
 import * as schema from '../schema';
 import {v4 as uuidv4} from 'uuid';
 import { memory_categories } from '../config/memory.config';
+import seedData from '../../seed.json';
+import type { NewMessage } from '../schema/message';
 
 const sqlite = new Database('./agi.db');
 const db = drizzle(sqlite, {schema});
 
 const tools = [
-  {
-    uuid: '24c5dbc0-c3ac-41d1-906f-f22b21272088',
-    name: 'spotify',
-    description:
-      `This tool interfaces with Spotify to play and search for music. It can handle tracks, playlists, and albums. When a specific track name is provided, it will play immediately. For general requests like 'play soundtrack from...', it will first search the Spotify database to confirm availability.`,
-    instruction: `Use the following actions based on the user's request type:
+//   {
+//     uuid: '24c5dbc0-c3ac-41d1-906f-f22b21272088',
+//     name: 'spotify',
+//     description:
+//       `This tool interfaces with Spotify to play and search for music. It can handle tracks, playlists, and albums. When a specific track name is provided, it will play immediately. For general requests like 'play soundtrack from...', it will first search the Spotify database to confirm availability.`,
+//     instruction: `Use the following actions based on the user's request type:
 
-1. For specific track requests (when the user provides both the exact track name and artist):
-   { "action": "play_music", "payload": { "query": "<exact track name by artist>" } }
+// 1. For specific track requests (when the user provides both the exact track name and artist):
+//    { "action": "play_music", "payload": { "query": "<exact track name by artist>" } }
 
-2. For general or ambiguous requests:
-   a) First, search: { "action": "search_music", "payload": { "query": "<search terms>" } }
-   b) Then, play the result: { "action": "play_music", "payload": { "query": "<result from search>" } }
+// 2. For general or ambiguous requests:
+//    a) First, search: { "action": "search_music", "payload": { "query": "<search terms>" } }
+//    b) Then, play the result: { "action": "play_music", "payload": { "query": "<result from search>" } }
 
-<action_rules>
-- A request is considered specific only if it includes both the exact track name and the artist.
-- For specific requests, use play_music action directly without searching.
-- For all other requests (general, partial information, or ambiguous), always use search_music before play_music.
-- If uncertain whether a request is specific or general, treat it as general and use the search step.
-</rules>
-`
-  },
+// <action_rules>
+// - A request is considered specific only if it includes both the exact track name and the artist.
+// - For specific requests, use play_music action directly without searching.
+// - For all other requests (general, partial information, or ambiguous), always use search_music before play_music.
+// - If uncertain whether a request is specific or general, treat it as general and use the search step.
+// </rules>
+// `
+//   },
   {
     uuid: '3e662060-2294-4d5e-a3c2-8ea466ccd52e',
     name: 'files',
@@ -108,14 +110,7 @@ Available states:
 - Done: "599ef3db-5579-48c9-8482-04508f75f868"
 
 Available projects:
-- overment: "ad799a5f-259c-4ff1-9387-efb949a56508" — this should be DEFAULT project for most tasks.
-- events: "fb516e26-9111-48fa-bc2f-9f7b2c1e5e26" — this is only for events / meetings
-- resources: "ef35d07e-f422-4316-9e00-b6806e1e7563" — this is only for resources / learning materials / links to the resources
-- notes: "91b77dcb-66d1-4101-ae97-88face67f3b6" — this is only for notes / ideas / thoughts that does not match any other project
-- easy_: "a1c39fbd-b462-44cb-a9e9-eefe9afd6471" — easy_ is a platform for selling digital products in which the user is co-founder who takes care of the product, strategy and marketing
-- tech•sistence: "1b587de1-4734-4de4-b540-5dc360bd6c1a" — tech•sistence is a blog / newsletter so all tasks related to it should be in this project
-- Alice: "873cbb34-5c12-48d4-ab6d-c8fc6b4f8379" — Alice is a desktop app that allows interacting with the Large Language Models and the user is a creator & developer of this app
-- eduweb: "4ce13c4d-cf86-4812-b1bc-f2374c71774d" — eduweb is an educational platform, so all tasks related to creating online courses and workshops should be in this project
+${seedData.projects.map(p => `- ${p.name}: "${p.uuid}" — ${p.description}`).join('\n')}
 
 When specifying projectId or stateId, use the corresponding UUID from the available options.`
   },
@@ -414,14 +409,14 @@ const categories = memory_categories;
 const users = [
   {
     uuid: uuidv4(),
-    name: 'Adam',
-    email: 'adam@overment.com',
+    name: 'Kinder',
+    email: 'lukaskiedrowski@gmail.com',
     token: process.env.API_KEY, // random token for auth
     active: true,
     phone: '+1234567890', // placeholder phone
-    context: 'developer from Krakow',
+    context: 'developer from Poznan',
     environment: JSON.stringify({
-      location: 'Krakow, at home.',
+      location: 'Poznan, at home.',
       time: '2024-11-16T16:28:00.000Z',
       weather: 'Partly cloudy, 12°C',
       music: 'AC/DC - Back in Black',
@@ -445,20 +440,18 @@ const messages = [
   {
     uuid: uuidv4(),
     conversation_uuid: conversations[0].uuid,
-    role: 'user',
-    content_type: 'text',
+    role: 'user' as const,
+    content_type: 'text' as const,
     content: 'Hi, can you help me with the project setup?',
-    source: 'chat',
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString()
   },
   {
     uuid: uuidv4(),
     conversation_uuid: conversations[0].uuid,
-    role: 'assistant',
-    content_type: 'text',
+    role: 'assistant' as const,
+    content_type: 'text' as const,
     content: "Sure! Let's get started. What framework are you using?",
-    source: 'chat',
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString()
   }
