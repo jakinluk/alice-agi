@@ -67,7 +67,7 @@ const mapService = {
     try {
       const state = stateManager.getState();
       const conversation_uuid = state.config.conversation_uuid ?? 'unknown';
-      const api_key = process.env.GOOGLE_API_KEY;
+      const api_key = process.env.GOOGLE_MAPS_API_KEY;
 
       if (!api_key) {
         throw new Error('Google Maps API key is not configured');

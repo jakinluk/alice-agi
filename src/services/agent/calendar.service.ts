@@ -321,8 +321,8 @@ const calendarService = {
     try {
       // Validate environment variables
       const required_env_vars = {
-        CALENDAR_CLIENT_ID: process.env.CALENDAR_CLIENT_ID,
-        CALENDAR_CLIENT_SECRET: process.env.CALENDAR_CLIENT_SECRET,
+        GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
+        GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
         GOOGLE_REDIRECT_URI: process.env.GOOGLE_REDIRECT_URI
       };
 
@@ -335,8 +335,8 @@ const calendarService = {
       }
 
       const auth = await createAuthClient({
-        client_id: required_env_vars.CALENDAR_CLIENT_ID!,
-        client_secret: required_env_vars.CALENDAR_CLIENT_SECRET!,
+        client_id: required_env_vars.GOOGLE_CLIENT_ID!,
+        client_secret: required_env_vars.GOOGLE_CLIENT_SECRET!,
         redirect_uri: required_env_vars.GOOGLE_REDIRECT_URI!
       });
 
