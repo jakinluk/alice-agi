@@ -54,7 +54,7 @@ jobs:
         echo "GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }}" >> .env # For Calendar OAuth primarily
         echo "GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }}" >> .env # For Calendar OAuth
         echo "GOOGLE_REDIRECT_URI=${{ secrets.GOOGLE_REDIRECT_URI }}" >> .env # For Calendar OAuth
-        echo "GOOGLE_MAPS_API_KEY=${{ secrets.GOOGLE_MAPS_API_KEY }}" >> .env # General Google API Key from .env-example
+        # echo "GOOGLE_MAPS_API_KEY=${{ secrets.GOOGLE_API_KEY }}" >> .env # General Google API Key from .env-example
         echo "GOOGLE_MAPS_API_KEY=${{ secrets.GOOGLE_MAPS_API_KEY }}" >> .env # Specific for Maps, from README
         echo "GOOGLE_ACCESS_TOKEN=${{ secrets.GOOGLE_ACCESS_TOKEN }}" >> .env # OAuth related, may not be static
         echo "GOOGLE_REFRESH_TOKEN=${{ secrets.GOOGLE_REFRESH_TOKEN }}" >> .env # OAuth related, may not be static
