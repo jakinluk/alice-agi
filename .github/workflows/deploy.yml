@@ -92,8 +92,8 @@ jobs:
       run: bun migrate
 
     # Optional: Seed database. Uncomment if seeding is required on each deployment and is idempotent.
-    # - name: Seed database
-    #   run: bun seed
+    - name: Seed database
+      run: bun seed
 
     - name: Start or restart application with PM2
       if: github.event_name == 'push' && github.ref == 'refs/heads/main' # Only run on push to main branch
@@ -103,7 +103,7 @@ jobs:
         
         echo "Checking if $APP_NAME is running with PM2..."
         if pm2 list | grep -qw $APP_NAME; then
-          echo "Restarting $APP_NAME with PM2..."
+          echo "Restarting $APP_NAME with   PM2..."
           pm2 restart $APP_NAME
         else
           echo "Starting $APP_NAME with PM2..."
